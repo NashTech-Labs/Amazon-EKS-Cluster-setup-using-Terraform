@@ -1,5 +1,5 @@
 resource "aws_subnet" "public-subnet" {
-  count                   = 3
+  count = 3
 
   availability_zone       = data.aws_availability_zones.available.names[count.index]
   cidr_block              = "10.101.${count.index}.0/24"
@@ -16,7 +16,7 @@ resource "aws_subnet" "public-subnet" {
 }
 
 resource "aws_subnet" "private-subnet" {
-  count             = 3
+  count = 3
 
   availability_zone = data.aws_availability_zones.available.names[count.index]
   cidr_block        = "10.101.${count.index + 3}.0/24"

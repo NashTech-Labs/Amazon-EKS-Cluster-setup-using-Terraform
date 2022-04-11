@@ -30,14 +30,14 @@ resource "aws_route_table" "private-rt" {
 }
 
 resource "aws_route_table_association" "public-rta" {
-  count          = 3
+  count = 3
 
   subnet_id      = aws_subnet.public-subnet.*.id[count.index]
   route_table_id = aws_route_table.public-rt.id
 }
 
 resource "aws_route_table_association" "private-rta" {
-  count          = 3
+  count = 3
 
   subnet_id      = aws_subnet.private-subnet.*.id[count.index]
   route_table_id = aws_route_table.private-rt.id

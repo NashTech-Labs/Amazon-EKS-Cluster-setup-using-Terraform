@@ -60,7 +60,7 @@ resource "aws_iam_role_policy_attachment" "eks-node-AmazonEC2ContainerRegistryRe
 
 resource "aws_iam_role_policy_attachment" "route53" {
   policy_arn = "arn:aws:iam::aws:policy/AmazonRoute53FullAccess"
-  role = aws_iam_role.eks-node.name
+  role       = aws_iam_role.eks-node.name
 }
 
 resource "aws_iam_role_policy_attachment" "eks-node-autoscaling" {
@@ -122,7 +122,7 @@ resource "aws_eks_node_group" "eks-node-group" {
   }
 
   launch_template {
-    name = aws_launch_template.lt.name
+    name    = aws_launch_template.lt.name
     version = aws_launch_template.lt.latest_version
   }
 
@@ -132,11 +132,11 @@ resource "aws_eks_node_group" "eks-node-group" {
 
 
   tags = {
-    "Name"                                            = "${var.cluster_name}-workernode"
-    "Environment"                                     = var.env
-    "kubernetes.io/cluster/${var.cluster_name}"       = "owned"
-    "k8s.io/cluster-autoscaler/${var.cluster_name}"   = "owned"
-    "k8s.io/cluster-autoscaler/enabled"               = "TRUE"
+    "Name"                                          = "${var.cluster_name}-workernode"
+    "Environment"                                   = var.env
+    "kubernetes.io/cluster/${var.cluster_name}"     = "owned"
+    "k8s.io/cluster-autoscaler/${var.cluster_name}" = "owned"
+    "k8s.io/cluster-autoscaler/enabled"             = "TRUE"
   }
 
   depends_on = [
